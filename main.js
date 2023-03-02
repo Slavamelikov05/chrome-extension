@@ -1,20 +1,26 @@
+// Get URL of content script
+//const contentScriptUrl = chrome.runtime.getURL('content.js');
 
-function emojify() {
-    // Replace all text on the page with emojis
-    const allNodes = document.getElementsByTagName("*");
-  
-  // Loop through all nodes
-  for (let i = 0; i < allNodes.length; i++) {
-    const node = allNodes[i];
-    // Check if node is a text node
-    if (node.nodeType === Node.TEXT_NODE) {
-      // Replace the text with the emoji
-      node.textContent = "😊👍🎉";
-    }
-  }
+// Send message to background script to execute content script
+let replaceButton = document.querySelector('.replace-btn');
+replaceButton.addEventListener('click', function () {
+//   chrome.runtime.sendMessage({ action: 'replace-text' });
+  console.log(replaceButton);
+});
 
-  }
-
-  let emojifyButton =  document.getElementById("emojify")
-
-  emojifyButton.addEventListener("click",emojify)
+// Listen for incoming messages from popup window
+// chrome.runtime.onMessage.addListener(function (message) {
+//   if (message.action === 'replace-text') {
+//     // Execute content script in active tab
+//     chrome.tabs
+//       .executeScript({
+//         file: contentScriptUrl,
+//       })
+//       .then(function () {
+//         console.log('Text replaced');
+//       })
+//       .catch(function (error) {
+//         console.error('Error:', error);
+//       });
+//   }
+// });

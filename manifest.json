@@ -1,23 +1,27 @@
 {
-    "name": "chrome extension",
-    "version": "1.0.0",
-    "manifest_version": 2,
-    
-    "permissions": [
-        "activeTab"
-      ],
-
-    "browser_action":{
-        "default_title": "hi mate",
-        "default_popup": "this"
-    },
-    
-   "content_scripts": [
-    {
+    "manifest_version": 3,
+    "name": "Text Replacer",
+    "version": "1.0",
+  
+    "description": "Replaces all text on the current webpage with 'replaced'.",
+  
+    "content_scripts": [
+      {
         "matches": ["<all_urls>"],
-        "js": ["main.js"]
+        "js": ["content.js"]
+      }
+    ],
+  
+    "background.service_worker": {
+      "scripts": ["main.js"]
+    },
+  
+    "permissions": ["activeTab"],
+  
+    "action": {
+      "default_title": "Replace Text",
+  
+      "default_popup": "main.html"
     }
-   ]
-
-
-}
+  }
+  
